@@ -1,0 +1,96 @@
+{
+	"name": "Landing Page - Digital Boost",
+	"image": "mcr.microsoft.com/devcontainers/universal:2",
+	
+	
+	"features": {
+		"ghcr.io/devcontainers/features/node:1": {
+			"version": "18"
+		}
+	},
+
+	
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"formulahendry.code-runner",
+				"GitHub.copilot",
+				"GitHub.copilot-chat",
+				"charalamposkarypidis.javascript-es6-code-snippets",
+				"redhat.java",
+				"vscjava.vscode-lombok",
+				"ms-ceintl.vscode-language-pack-pt-br"
+			],
+			"settings": {
+				"editor.formatOnSave": true,
+				"editor.defaultFormatter": "esbenp.prettier-vscode",
+				"html.format.enable": true,
+				"css.format.enable": true,
+				"javascript.format.enable": true,
+				"editor.tabSize": 2,
+				"editor.insertSpaces": true,
+				"files.autoSave": "afterDelay",
+				"files.autoSaveDelay": 1000,
+				"liveServer.settings.donotShowInfoMsg": true,
+				"liveServer.settings.donotVerifyTags": true,
+				"liveServer.settings.port": 5500,
+				"liveServer.settings.CustomBrowser": "chrome",
+				"emmet.includeLanguages": {
+					"javascript": "javascriptreact"
+				}
+			}
+		}
+	},
+
+
+	"forwardPorts": [3000, 5500, 8000, 8080],
+
+	
+	"postCreateCommand": "npm install -g live-server prettier && echo 'Ambiente configurado com sucesso!'",
+
+	
+	"remoteUser": "codespace",
+
+	
+	"containerEnv": {
+		"NODE_ENV": "development",
+		"PORT": "3000"
+	},
+
+	
+	"workspaceFolder": "/workspaces/landing-page-projeto",
+
+	
+	"initializeCommand": "echo 'Inicializando container...'",
+	"onCreateCommand": "echo 'Container criado com sucesso!'",	"updateContentCommand": "echo 'Conteúdo atualizado!'",
+	"postStartCommand": "echo 'Container iniciado! Acesse http://localhost:5500 para visualizar a página.'",
+
+	
+	"shutdownAction": "stopContainer",
+	"overrideCommand": false,
+
+	
+	"mounts": [
+		"source=${localWorkspaceFolder}/.git,target=/workspaces/landing-page-projeto/.git,type=bind,consistency=cached"
+	],
+
+	
+	"portsAttributes": {
+		"3000": {
+			"label": "Development Server",
+			"onAutoForward": "notify"
+		},
+		"5500": {
+			"label": "Live Server",
+			"onAutoForward": "openBrowser"
+		},
+		"8000": {
+			"label": "Python Server",
+			"onAutoForward": "ignore"
+		},
+		"8080": {
+			"label": "Alternative Server",
+			"onAutoForward": "ignore"
+		}
+	}
+}
